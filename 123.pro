@@ -28,15 +28,13 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         map.cpp \
-        pacman.cpp \
-        text.cpp
+        pacman.cpp
 
 HEADERS += \
         data.h \
         mainwindow.h \
         map.h \
-        pacman.h \
-        text.h
+        pacman.h
 
 FORMS += \
         mainwindow.ui

@@ -5,27 +5,12 @@ pacman::pacman()
 
 }
 
-int pacman::iswall(int x, int y)
-{
-    if(mapping.init_map[y][x]=='1')
-        return 1;
-    else
-        return 0;
-
-}
-
-void pacman::setdirection(int dir)
-{
-    direction=dir;
-}
-
 void pacman::ghostAmove(int dir,int x,int y,int px,int py)
 {
     if(y<=py)
     {
         if(x<=px)
         {
-//            qDebug()<<"A";
             if(dir==1)
                 nextdirection=newdirection(4,3,1);
             if(dir==2)
@@ -37,7 +22,6 @@ void pacman::ghostAmove(int dir,int x,int y,int px,int py)
         }
         if(x>px)
         {
-//            qDebug()<<"B";
             if(dir==1)
                 nextdirection=newdirection(3,1,4);
             if(dir==2)
@@ -52,7 +36,6 @@ void pacman::ghostAmove(int dir,int x,int y,int px,int py)
     {
         if(x<=px)
         {
-//            qDebug()<<"C";
             if(dir==1)
                 nextdirection=newdirection(1,4,3);
             if(dir==2)
@@ -64,7 +47,6 @@ void pacman::ghostAmove(int dir,int x,int y,int px,int py)
         }
         if(x>px)
         {
-//            qDebug()<<"D";
             if(dir==1)
                 nextdirection=newdirection(1,3,4);
             if(dir==2)
@@ -75,17 +57,14 @@ void pacman::ghostAmove(int dir,int x,int y,int px,int py)
                 nextdirection=newdirection(1,4,2);
         }
     }
-//    qDebug()<<dir<<nextdirection;
 }
 
 void pacman::ghostBmove(int dir,int x,int y,int px,int py)
 {
-//    qDebug()<<px<<py;
     if(y<=py)
     {
         if(x<=px)
         {
-//            qDebug()<<"A";
             if(dir==1)
                 nextdirection=newdirection(4,3,1);
             if(dir==2)
@@ -97,7 +76,6 @@ void pacman::ghostBmove(int dir,int x,int y,int px,int py)
         }
         if(x>px)
         {
-//            qDebug()<<"B";
             if(dir==1)
                 nextdirection=newdirection(3,1,4);
             if(dir==2)
@@ -112,7 +90,6 @@ void pacman::ghostBmove(int dir,int x,int y,int px,int py)
     {
         if(x<=px)
         {
-//            qDebug()<<"C";
             if(dir==1)
                 nextdirection=newdirection(1,4,3);
             if(dir==2)
@@ -124,7 +101,6 @@ void pacman::ghostBmove(int dir,int x,int y,int px,int py)
         }
         if(x>px)
         {
-//            qDebug()<<"D";
             if(dir==1)
                 nextdirection=newdirection(1,3,4);
             if(dir==2)
@@ -135,7 +111,6 @@ void pacman::ghostBmove(int dir,int x,int y,int px,int py)
                 nextdirection=newdirection(1,4,2);
         }
     }
-    qDebug()<<"dir"<<dir<<"next"<<nextdirection;
 }
 
 void pacman::ghostCmove(int dir)
@@ -146,8 +121,6 @@ void pacman::ghostCmove(int dir)
         tmp=rand()%4+1;
         if(dir==0)
         {
-            nextdirection=dir;
-//            qDebug()<<"dir"<<dir<<"next"<<nextdirection;
             break;
         }
         if(tmp!=opdir(dir))
@@ -155,7 +128,6 @@ void pacman::ghostCmove(int dir)
             if(change2(tmp))
             {
                 nextdirection=tmp;
-//                qDebug()<<"dir"<<dir<<"next"<<nextdirection;
                 break;
             }
         }
@@ -164,7 +136,78 @@ void pacman::ghostCmove(int dir)
 
 void pacman::ghostDmove(int dir,int x,int y,int px,int py)
 {
-
+    int i;
+    int dx=x-px;
+    int dy=y-py;
+    int gap=dx*dx+dy*dy;
+    if((gap>70))
+    {
+        for(i=0;i<100;i++)
+        {
+            tmp=rand()%4+1;
+            if(tmp!=opdir(dir))
+            {
+                if(change2(tmp))
+                {
+                    nextdirection=tmp;
+                    break;
+                }
+            }
+        }
+    }
+    else
+    {
+        if(y<=py)
+        {
+            if(x<=px)
+            {
+                if(dir==1)
+                    nextdirection=newdirection(4,3,1);
+                if(dir==2)
+                    nextdirection=newdirection(2,4,3);
+                if(dir==3)
+                    nextdirection=newdirection(2,3,1);
+                if(dir==4)
+                    nextdirection=newdirection(4,2,1);
+            }
+            if(x>px)
+            {
+                if(dir==1)
+                    nextdirection=newdirection(3,1,4);
+                if(dir==2)
+                    nextdirection=newdirection(2,3,4);
+                if(dir==3)
+                    nextdirection=newdirection(3,2,1);
+                if(dir==4)
+                    nextdirection=newdirection(2,1,4);
+            }
+        }
+        else if(y>py)
+        {
+            if(x<=px)
+            {
+                if(dir==1)
+                    nextdirection=newdirection(1,4,3);
+                if(dir==2)
+                    nextdirection=newdirection(4,3,2);
+                if(dir==3)
+                    nextdirection=newdirection(1,3,2);
+                if(dir==4)
+                    nextdirection=newdirection(4,1,2);
+            }
+            if(x>px)
+            {
+                if(dir==1)
+                    nextdirection=newdirection(1,3,4);
+                if(dir==2)
+                    nextdirection=newdirection(3,4,2);
+                if(dir==3)
+                    nextdirection=newdirection(3,1,2);
+                if(dir==4)
+                    nextdirection=newdirection(1,4,2);
+            }
+        }
+    }
 }
 
 bool pacman::canghost(int x,int y)
@@ -194,21 +237,6 @@ bool pacman::canghost2(int dir,int newx,int newy,int x,int y)
     if(newy==0 || newy==(LEVEL_HEIGHT-1))
         if(newx!=13)
             return false;
-//    if(y==13)
-//    {
-//        if(x==12 || x==13 || x==14 )
-//        {
-//            switch(map[newy][newx])
-//            {
-//                case '1':
-//                    return false;
-//                default:
-//                    return true;
-//            }
-//        }
-//    }
-//    else
-//    {
         switch(map[newy][newx])
         {
             case '1':
@@ -293,48 +321,10 @@ bool pacman::change2(int dir)
                 newx=x+1;
             break;
     }
-    qDebug()<<dir<<"pos"<<x<<y<<"new"<<newx<<newy;
     if(canghost2(dir,newx,newy,x,y))
         return true;
     else
         return false;
-}
-
-void pacman::show()
-{
-//    int x,y;
-//    for(x=0;x<LEVEL_HEIGHT;x++)
-//    {
-//        for(y=0;y<LEVEL_WIDTH;y++)
-//        {
-//            qDebug()<<map[y][x];
-//        }
-//    }
-}
-
-bool pacman::intersection(int x,int y)
-{
-    int x1,x2,x3,x4,y1,y2,y3,y4,way=0;
-    x1=x-1;
-    y1=y;
-    x2=x;
-    y2=y+1;
-    x3=x+1;
-    y3=y;
-    x4=x;
-    y4=y-1;
-    if(canghost(x1,y1))
-        way++;
-    if(canghost(x2,y2))
-        way++;
-    if(canghost(x3,y3))
-        way++;
-    if(canghost(x4,y4))
-        way++;
-    if(way==1)
-        return true;
-    return
-        false;
 }
 
 int pacman::opdir(int x)
@@ -367,4 +357,28 @@ int pacman::newdirection2(int x,int y,int z)
         return y;
     else if(change2(z))
         return z;
+    //bool pacman::intersection(int x,int y)
+    //{
+    //    int x1,x2,x3,x4,y1,y2,y3,y4,way=0;
+    //    x1=x-1;
+    //    y1=y;
+    //    x2=x;
+    //    y2=y+1;
+    //    x3=x+1;
+    //    y3=y;
+    //    x4=x;
+    //    y4=y-1;
+    //    if(canghost(x1,y1))
+    //        way++;
+    //    if(canghost(x2,y2))
+    //        way++;
+    //    if(canghost(x3,y3))
+    //        way++;
+    //    if(canghost(x4,y4))
+    //        way++;
+    //    if(way==1)
+    //        return true;
+    //    return
+    //        false;
+    //}
 }

@@ -43,6 +43,9 @@ class MainWindow : public QMainWindow
         int scaretime=0;
         int path[10000][2];
         int pos=0;
+        int pos2;
+        bool same=false;
+        void samepos2();
 
         int scarestate=0;
         int ghostA=0,ghostB=0,ghostC=0,ghostD=0;

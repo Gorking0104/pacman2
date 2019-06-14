@@ -26,15 +26,12 @@ class pacman
         int lastdirection;
         char index;
         char tmp;
+        int path[10000][2];
 
-        int iswall(int x,int y);
-        void setdirection(int dir);
-        bool collision();
         class map mapping;
         bool scared=false;
         bool start=false;
         char map[LEVEL_HEIGHT][LEVEL_WIDTH];
-
 
         Mainwindow *window;
 
@@ -51,14 +48,6 @@ class pacman
         int opdir(int x);
         bool change(int dir);
         bool change2(int dir);
-        void show();
-        bool intersection(int x,int y);
-        void intersection2(int x,int y);
-        void intersection3(int x,int y);
-        void intersection4(int x,int y);
-        int A[4][4]={{2,4,1,3},{2,3,1,4},{4,1,3,2},{3,1,4,2}};
-        int B[4],C[4],D[4];
-
 };
 
 #endif // PACMAN_H

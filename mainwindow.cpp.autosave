@@ -390,56 +390,11 @@ void MainWindow::power()
             else
             {
                 timer->stop();
-                 ended();
+                ended();
             }
 
         }
     }
-//    if(player.scared)
-//    {
-//        if(samepos(0))
-//        {
-//            player.score+=100;
-//            loadmap.init_map[ghosts[i].x][ghosts[i].y]=' ';
-//        }
-//        if(samepos(1))
-//        {
-//            player.score+=100;
-//            loadmap.init_map[ghosts[i].x][ghosts[i].y]=' ';
-//        }
-//        if(samepos(2))
-//        {
-//            player.score+=100;
-//            loadmap.init_map[ghosts[i].x][ghosts[i].y]=' ';
-//        }
-//        if(samepos(3))
-//        {
-//            player.score+=100;
-//            loadmap.init_map[ghosts[i].x][ghosts[i].y]=' ';
-//        }
-
-//    }
-//    else if(samepos(0)||samepos(1)||samepos(2)||samepos(3))
-//    {
-//        timer->stop();
-//        ended();
-//    }
-//    if(samepos(0)||samepos(1)||samepos(2)||samepos(3))
-//    {
-//        if(player.scared)
-//        {
-//            for(i=0;i<4;i++)
-//            {
-//                if(samepos(i))
-//                {
-//                    player.score+=100;
-//                    ghosts[i].scared=true;
-//                    qDebug()<<"same";
-//                    loadmap.init_map[ghosts[i].y][ghosts[i].x]=' ';
-//                    ghosts[i].y=-1;
-//                    ghosts[i].x=-1;
-//                    i=10;
-//                }
 
 ////                if(i==0)
 ////                {
@@ -451,14 +406,7 @@ void MainWindow::power()
 ////                    ghosts[i].x=13;
 ////                    ghosts[i].y=15;
 ////                }
-//            }
-//        }
-//        else
-//        {
-//            timer->stop();
-//            ended();
-//        }
-//    }
+
 }
 
 void MainWindow::check()

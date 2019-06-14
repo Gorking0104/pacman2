@@ -22,13 +22,6 @@ class map
         void pacmove(int dir,int x,int y);
         bool canmove(int x,int y);
 
-        void ghostAmove(int dir,int nextd,int x,int y,int px,int py);
-        void ghostBmove(int dir,int x,int y,int px,int py);
-        void ghostCmove(int dir,int x,int y,int px,int py);
-        void ghostDmove(int dir,int x,int y,int px,int py);
-        bool canghost(int x,int y);
-        bool change(int dir,int x, int y);
-
         bool moving;
         int newx;
         int newy;
