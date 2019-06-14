@@ -5,7 +5,6 @@
 #include "data.h"
 #include "map.h"
 #include "pacman.h"
-#include "text.h"
 
 #include <iostream>
 namespace Ui
